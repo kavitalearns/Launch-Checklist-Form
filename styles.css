@@ -19,9 +19,7 @@ div {
   padding: 10px;
 }
 
-.visible {
-  visibility: visible;
-}
+
 
 #launchStatusCheck {
   background-color: #ecf0f1;
