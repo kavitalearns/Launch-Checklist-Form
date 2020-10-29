@@ -1,6 +1,26 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function () {
   let form = document.querySelector('form');
+     missionTarget = document.getElementById("missionTarget");
+    
+        fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+      response.json().then(function (json) {
+        let missionTarget = document.getElementById("missionTarget");
+        let randomIndex = Math.floor(Math.random() * json.length);
+          console.log(json[0].name);
+        missionTarget.innerHTML =
+        
+          `<h2>Mission Destination</h2>
+              <ol>
+                   <li>Name: ${json[randomIndex].name}</li>
+                  <li>Diameter: ${json[randomIndex].diameter}</li>
+                  <li>Star: ${json[randomIndex].star}</li>
+                  <li>Distance from Earth: ${json[randomIndex].distance}</li>
+                  <li>Number of Moons: ${json[randomIndex].moons}</li>
+              </ol>
+                  <img src="${json[randomIndex].image}"></img>`
+      });
+    });
   form.addEventListener("submit", function (event) {
      event.preventDefault();
     const pilot = document.querySelector('Input[name="pilotName"]');
@@ -43,40 +63,13 @@ window.addEventListener("load", function () {
       cargoStatus.innerHTML = "Too much mass for the shuttle to take off!";
     } else if (fuelLevel.value > 10000 && cargoMass.value < 10000) {
       launchStatus.innerHTML = "Shuttle is ready for launch";
-      launchStatus.style.color = "green";
-    
-          missionTarget = document.getElementById("missionTarget");
-    
-        fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
-      response.json().then(function (json) {
-        let missionTarget = document.getElementById("missionTarget");
-        let randomIndex = Math.floor(Math.random() * json.length);
-          console.log(json[0].name);
-        missionTarget.innerHTML =
-
-          `<h2>Mission Destination</h2>
-              <ol>
-                   <li>Name: ${json[randomIndex].name}</li>
-                  <li>Diameter: ${json[randomIndex].diameter}</li>
-                  <li>Star: ${json[randomIndex].star}</li>
-                  <li>Distance from Earth: ${json[randomIndex].distance}</li>
-                  <li>Number of Moons: ${json[randomIndex].moons}</li>
-              </ol>
-                  <img src="${json[randomIndex].image}"></img>`
-      });
-    });
+      launchStatus.style.color = "green";}
     }
-  }
   });
-});
-/* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${}</li>
-   <li>Diameter: ${}</li>
-   <li>Star: ${}</li>
-   <li>Distance from Earth: ${}</li>
-   <li>Number of Moons: ${}</li>
-</ol>
-<img src="${}">
-*/
+          
+
+    
+  
+  });
+
+
